@@ -12,7 +12,8 @@ if (!empty($_POST)) {
             die();
         }
         else {
-            $_SESSION['note'] = '<span style="color:red;font-weight:bold;">Neteisingas prisijungimo vardas arba slaptažodis</span>';
+            $_SESSION['note'] = '<span style="color:red;font-weight:bold;">
+                                Neteisingas prisijungimo vardas arba slaptažodis</span>';            
             header('Location: '.$URL.'login.php');
             die();
         }
@@ -25,6 +26,12 @@ if (isset($_GET['logout'])) {
     die();
 }
 
+
+
+?>
+<h2>Prisijungimas</h2>
+
+<?php
 if(isset($_SESSION['note'])) {
     echo $_SESSION['note'];
     unset($_SESSION['note']);
@@ -32,10 +39,11 @@ if(isset($_SESSION['note'])) {
 
 ?>
 
+<br>
 <form action=<?=$URL.'login.php'?> method="post">
     <label for="">Prisijungimo vardas</label><br>
-    <input type="text" name="user"><br>
+    <input type="text" name="user"><br><br>
     <label for="">Slaptažodis</label><br>
-    <input type="password" name="password"><br>
+    <input type="password" name="password"><br><br>
     <button type="submit">Prisijungti</button>
 </form>

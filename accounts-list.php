@@ -16,7 +16,7 @@ if(isset($_POST['delete'])) {
                 $_SESSION['note'] = "Sąskaita ". $_POST['delete']. " ištrinta";
             }
             else {
-                $_SESSION['note'] = "Sąskaitos ". $_POST['delete']. " ištrinti negalima";
+                $_SESSION['note'] = '<span style="color:red;font-weight:bold;">Sąskaitos '. $_POST['delete']. ' ištrinti negalima</span>';
             }
             
         }
@@ -28,10 +28,7 @@ if(isset($_POST['delete'])) {
     die();
 }
 
-if(isset($_SESSION['note'])) {
-    echo $_SESSION['note'];
-    unset($_SESSION['note']);
-}
+
 
 
 ?>
@@ -66,6 +63,15 @@ if(isset($_SESSION['note'])) {
         </nav>       
     </header>
     <h2>Sąskaitų sąrašas</h2>
+
+<?php
+if(isset($_SESSION['note'])) {
+    echo $_SESSION['note'];
+    unset($_SESSION['note']);
+}
+
+?>
+    <br>
     <table>
         <tr>
             <th>Vardas</th>

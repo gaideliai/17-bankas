@@ -31,7 +31,8 @@ if (isset($_POST['add'])) {
                 $_SESSION['note'] = 'Lėšos įskaitytos į sąskaitą '.$IBAN;
             }
             else {
-                $_SESSION['note'] = '<span style="color:red;font-weight:bold;">Įveskite sumą</span>';
+                $_SESSION['note'] = '<span style="color:red;font-weight:bold;">
+                                    Įveskite sumą - teigiamą skaičių</span>';
             }
              
             $balance = number_format($account['balance'], 2, ',', ' ');//.' Eur';
@@ -44,15 +45,12 @@ if (isset($_POST['add'])) {
     }
     file_put_contents(__DIR__ .'/accounts.json', json_encode($data));
     
-    header("Location: $URL"."add.php?account=".$IBAN);
+    header('Location: '.$URL.'add.php?account='.$IBAN);
     die();
 }
 
 
-if(isset($_SESSION['note'])) {
-    echo $_SESSION['note'];
-    unset($_SESSION['note']);
-}
+
 
 ?>
 
@@ -88,6 +86,15 @@ if(isset($_SESSION['note'])) {
         </nav>       
     </header>
 <h2>Lėšų įskaitymas</h2>
+
+<?php
+if(isset($_SESSION['note'])) {
+    echo $_SESSION['note'];
+    unset($_SESSION['note']);
+}
+
+?>
+    <br>
     <table>
         <tr>
             <th>Vardas</th>

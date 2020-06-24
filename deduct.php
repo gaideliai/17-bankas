@@ -33,11 +33,11 @@ if (isset($_POST['deduct'])) {
             }
             elseif ($_POST['balance'] < 0) {
                 $_SESSION['note'] = '<span style="color:red;font-weight:bold;">
-                Suma turi būti teigiamas skaičius.</span>';
+                                    Suma turi būti teigiamas skaičius.</span>';
             }
             else {
                 $_SESSION['note'] = '<span style="color:red;font-weight:bold;">
-                Sąskaitoje nepakanka lėšų. Operacija neįvykdyta.</span>';
+                                    Sąskaitoje nepakanka lėšų. Operacija neįvykdyta.</span>';
             }
 
             $balance = number_format($account['balance'], 2, ',', ' ');//.' Eur';
@@ -50,15 +50,10 @@ if (isset($_POST['deduct'])) {
     }
     file_put_contents(__DIR__ .'/accounts.json', json_encode($data));
     
-    header("Location: $URL"."deduct.php?account=".$IBAN);
+    header('Location: '.$URL.'deduct.php?account='.$IBAN);
     die();
 }
 
-
-if(isset($_SESSION['note'])) {
-    echo $_SESSION['note'];
-    unset($_SESSION['note']);
-}
 
 ?>
 
@@ -94,6 +89,16 @@ if(isset($_SESSION['note'])) {
         </nav>       
     </header>
 <h2>Lėšų nuskaitymas</h2>
+
+<?php
+if(isset($_SESSION['note'])) {
+    echo $_SESSION['note'];
+    unset($_SESSION['note']);
+}
+
+?>
+
+    <br>
     <table>
         <tr>
             <th>Vardas</th>

@@ -122,7 +122,8 @@ if (isset($_POST['submit'])) {
 
         
     elseif(verifyID($_POST['id']) === false) {
-        $_SESSION['note'] = '<span style="color:red;font-weight:bold;">Neteisingai įvestas asmens kodas</span>'; 
+        $_SESSION['note'] = '<span style="color:red;font-weight:bold;">
+                            Neteisingai įvestas asmens kodas</span>'; 
         $_SESSION['name'] = $_POST['name'];
         $_SESSION['surname'] = $_POST['surname'];       
         header('Location: '.$URL.'new-account.php');
@@ -138,10 +139,7 @@ if (isset($_POST['submit'])) {
 }
 
 
-if(isset($_SESSION['note'])) {
-    echo $_SESSION['note'];
-    unset($_SESSION['note']);    
-}
+
 
 // if (isset($_POST['clear'])) {
     // header("Location: $URL"."new-account.php");
@@ -164,6 +162,16 @@ if(isset($_SESSION['note'])) {
             <a href=<?=$URL.'login.php?logout'?>>Atsijungti</a>
         </nav>       
     </header>
+    <h2>Nauja sąskaita</h2>
+
+<?php
+if(isset($_SESSION['note'])) {
+    echo $_SESSION['note'];
+    unset($_SESSION['note']);    
+}
+
+?>
+    <br>
     <form action="" method="post">
         <input type="text" name="name" value=<?= $_SESSION['name'] ?? '' ?>> Vardas<br>
 <?php
@@ -174,7 +182,7 @@ unset($_SESSION['name']);
 unset($_SESSION['surname']);
 ?>
         <input type="text" name="account" value="<?= generateAccountNumber($data)?>" readonly> Sąskaitos numeris<br>
-        <input type="text"  maxlength="11" name="id" value=<?= $_SESSION['id'] ?? ''?>> Asmens kodas<br><br>
+        <input type="number"  maxlength="11" name="id" value=<?= $_SESSION['id'] ?? ''?>> Asmens kodas<br><br>
 <?php
 unset($_SESSION['id']);
 ?>        

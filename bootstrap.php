@@ -15,4 +15,4 @@ function sort_by_surname ($key) {
 
 usort($data, sort_by_surname('surname'));
 
-_d($data);
+// _d($data);
