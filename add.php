@@ -1,8 +1,8 @@
 <?php
 require __DIR__ . '/bootstrap.php';
 
-_d($_GET);
-_d($_POST);
+// _d($_GET);
+// _d($_POST);
 
 if (!isset($_SESSION['login']) || $_SESSION['login'] != 1) {
     header('Location: '.$URL.'login.php');
@@ -15,9 +15,9 @@ if (isset($_GET['account'])) {
             $name = $account['name'];
             $surname = $account['surname'];
             $IBAN = $account['account'];
-            $id = $account['id'];
+            // $id = $account['id'];
             // $balance = $account['balance'];
-            $balance = number_format($account['balance'], 2, ',', ' ').' Eur';
+            $balance = number_format($account['balance'], 2, ',', ' ');//.' Eur';
         }
     }
 }
@@ -26,17 +26,24 @@ if (isset($_GET['account'])) {
 if (isset($_POST['add'])) {
     foreach ($data as $key => $account) {
         if ($_POST['add'] == $account['account']) {
-            $data[$key]['balance'] += $_POST['balance']; 
-            $balance = number_format($account['balance'], 2, ',', ' ').' Eur';
+            if ($_POST['balance'] > 0) {
+                $data[$key]['balance'] += $_POST['balance'];
+                $_SESSION['note'] = 'Lėšos įskaitytos į sąskaitą '.$IBAN;
+            }
+            else {
+                $_SESSION['note'] = '<span style="color:red;font-weight:bold;">Įveskite sumą</span>';
+            }
+             
+            $balance = number_format($account['balance'], 2, ',', ' ');//.' Eur';
 
             $name = $account['name'];
             $surname = $account['surname'];
             $IBAN = $account['account'];
-            $id = $account['id'];
+            // $id = $account['id'];
         }
     }
     file_put_contents(__DIR__ .'/accounts.json', json_encode($data));
-    $_SESSION['note'] = 'Lėšos įskaitytos į sąskaitą nr. '.$IBAN;
+    
     header("Location: $URL"."add.php?account=".$IBAN);
     die();
 }
@@ -85,18 +92,20 @@ if(isset($_SESSION['note'])) {
         <tr>
             <th>Vardas</th>
             <th>Pavardė</th>
-            <th>Asmens kodas</th>
+            <!-- <th>Asmens kodas</th> -->
             <th>Sąskaitos numeris</th>
             <th>Balansas</th>
+            <th>Valiuta</th>
             <th>Tvarkyti sąskaitą</th>
         </tr>
   
         <tr>
             <td><?= $name ?></td>
             <td><?= $surname ?></td>
-            <td><?= $id ?></td>
+            <!-- <td><?= $id ?></td> -->
             <td><?= $IBAN ?></td>
             <td><?= $balance ?></td>
+            <td>EUR</td>
             <td>
                 <form action="" method="post">
                     <input type="number" step="0.01" name="balance">

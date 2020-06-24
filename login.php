@@ -33,7 +33,9 @@ if(isset($_SESSION['note'])) {
 ?>
 
 <form action=<?=$URL.'login.php'?> method="post">
-    <input type="text" name="user"> Prisijungimo vardas<br>
-    <input type="password" name="password"> Slaptažodis<br>
+    <label for="">Prisijungimo vardas</label><br>
+    <input type="text" name="user"><br>
+    <label for="">Slaptažodis</label><br>
+    <input type="password" name="password"><br>
     <button type="submit">Prisijungti</button>
 </form>

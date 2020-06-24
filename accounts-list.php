@@ -1,8 +1,6 @@
 <?php 
 require __DIR__.'/bootstrap.php';
 
-// _d($_POST);
-
 if (!isset($_SESSION['login']) || $_SESSION['login'] != 1) {
     header('Location: '.$URL.'login.php');
     die();
@@ -10,18 +8,19 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] != 1) {
 
 
 if(isset($_POST['delete'])) {
-    
-    _d($data);
 
     foreach ($data as $key => $account) {
         if ($account['account'] == $_POST['delete']) {
-            unset($data[$key]);
-            $_SESSION['note'] = "Sąskaita nr. ". $_POST['delete']. " ištrinta";
+            if ($account['balance'] == 0) {
+                unset($data[$key]);
+                $_SESSION['note'] = "Sąskaita ". $_POST['delete']. " ištrinta";
+            }
+            else {
+                $_SESSION['note'] = "Sąskaitos ". $_POST['delete']. " ištrinti negalima";
+            }
+            
         }
-    }
-    
-   
-    _d($data);
+    }    
 
     file_put_contents(__DIR__ .'/accounts.json', json_encode($data));
 
@@ -85,8 +84,8 @@ if(isset($_SESSION['note'])) {
             <td>
                 <form action="" method="post">
                     <button type="submit" name="delete" value="<?= $account['account'] ?>">Ištrinti sąskaitą</button><br>
-                    <a href=<?=$URL.'add.php?account='.$account['account']?> style="font-family:arial;font-size:13px;">Pridėti lėšų</a><br>
-                    <a href=<?=$URL.'deduct.php?account='.$account['account']?> style="font-family:arial;font-size:13px;">Nuskaičiuoti lėšas</a>
+                    <a href=<?=$URL.'add.php?account='.$account['account']?>>Pridėti lėšų</a><br>
+                    <a href=<?=$URL.'deduct.php?account='.$account['account']?>>Nuskaičiuoti lėšas</a>
                 </form>
             </td>
         </tr>
