@@ -130,6 +130,19 @@ if (isset($_POST['submit'])) {
         die();
     }
 
+    elseif (isset($_POST['id'])) {
+        foreach ($data as $key => $account) {
+            if ($data[$key]['id'] == $_POST['id']) {
+                $_SESSION['note'] = '<span style="color:red;font-weight:bold;">
+                                Neteisingai įvestas asmens kodas!</span>';
+            }
+        }
+        $_SESSION['name'] = $_POST['name'];
+        $_SESSION['surname'] = $_POST['surname'];       
+        header('Location: '.$URL.'new-account.php');
+        die();
+    }
+
 
     $data[] = ['name' => $_POST['name'], 'surname' => $_POST['surname'], 'id' => $_POST['id'], 'account' => $_POST['account'], 'balance' => $_POST['balance']]; 
     file_put_contents(__DIR__ .'/accounts.json', json_encode($data));
@@ -182,11 +195,12 @@ unset($_SESSION['name']);
 unset($_SESSION['surname']);
 ?>
         <input type="text" name="account" value="<?= generateAccountNumber($data)?>" readonly> Sąskaitos numeris<br>
-        <input type="number"  maxlength="11" name="id" value=<?= $_SESSION['id'] ?? ''?>> Asmens kodas<br><br>
+        <input type="text" maxlength="11" name="id" value=<?= $_SESSION['id'] ?? ''?>> Asmens kodas<br><br>
 <?php
 unset($_SESSION['id']);
 ?>        
         <input type="hidden" name="balance" value="0">
+        
         <button type="submit" name="submit">Pridėti naują sąskaitą</button>
         <button type="submit" name="clear">Išvalyti</button><br>
     </form>
