@@ -1,0 +1,150 @@
+body,
+body * {
+    /* margin: 0; */
+    padding: 0;
+    vertical-align: top;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+header {
+    display: inline-block;
+    width: 100%;
+}
+
+    header nav {
+        display: inline-block;
+        float: right;
+    }
+        header nav > a {
+            display: inline-block;
+            float: left;
+            margin-left: 20px;
+            line-height: 50px;
+            font-size: 20px;
+        }
+        header nav > a > .fa {
+            padding-top: 15px;
+            text-decoration: underline;
+        }
+
+table {  
+    display: inline-block;
+    width: 100vw;   
+    border-collapse: collapse;
+    max-width: 100%;
+}
+
+td, th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+    color: #333;
+}
+
+    /* td.iban {
+        color: rgb(4, 130, 248);
+    } */
+
+th {
+    color: #000;
+}
+
+tr:nth-child(even) {
+    background-color: rgb(236, 233, 233);
+}
+
+
+button,
+.btn {
+    padding: 3px 10px;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    border: none;
+    background-color: rgb(77, 164, 221);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+    .btn > a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+.fa {
+    padding-top: 2px;
+}
+
+.fa.fa-plus-square,
+.fa.fa-minus-square {
+    color: #fff;
+}
+
+.fa.fa-trash {
+    color: rgb(202, 113, 113);
+}
+
+.form {
+    display: inline-block;
+    width: 400px;
+    padding: 10px 50px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(236, 233, 233);
+}
+    .form > h2 {
+        margin-bottom: 0;
+    }
+    .form > .login {
+        display: inline-block;
+        width: 120px;
+        height: 120px;
+        margin-bottom: 20px;
+        border-radius: 50%;
+        text-align: center;
+        color: rgb(28, 140, 214);
+        background-color: #fff;
+        position: relative;
+    }
+        .form > .login > .fa.fa-unlock-alt,
+        .form > .login > .fa.fa-user-plus{
+            font-size: 60px;            
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .form > form > label{
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 18px;
+            line-height: 20px;
+            text-align: left;
+        }
+        .form > form > input {
+            display: inline-block;
+            width: 100%;
+            padding: 0 5px;
+            font-size: 18px;
+            line-height: 30px;
+            color: #333;
+            border: none;
+            border-bottom: 1px solid grey;
+        }
+
+    form > input {
+        display: inline-block;
+        padding: 0 5px;
+        font-size: 16px;
+        line-height: 25px;
+        color: #333;
+        border: none;
+        border-bottom: 1px solid grey;
+    }

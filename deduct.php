@@ -30,14 +30,14 @@ if (isset($_POST['deduct'])) {
             if ($_POST['balance'] <= $data[$key]['balance'] && $_POST['balance'] > 0) {
                 $data[$key]['balance'] = round(($data[$key]['balance'] - $_POST['balance']), 2);
                 // $data[$key]['balance'] -= $_POST['balance'];
-                $_SESSION['note'] = 'Lėšos nuskaitytos iš sąskaitos '.$IBAN;
+                $_SESSION['note'] = 'Lėšos nuskaitytos iš sąskaitos '.formatIban($IBAN);
             }
             elseif ($_POST['balance'] < 0) {
-                $_SESSION['note'] = '<span style="color:red;font-weight:bold;">
+                $_SESSION['note'] = '<span style="color:red;">
                                     Suma turi būti teigiamas skaičius.</span>';
             }
             else {
-                $_SESSION['note'] = '<span style="color:red;font-weight:bold;">
+                $_SESSION['note'] = '<span style="color:red;">
                                     Sąskaitoje nepakanka lėšų. Operacija neįvykdyta.</span>';
             }
             // round($account['balance'], 2);
@@ -64,32 +64,20 @@ if (isset($_POST['deduct'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        table {        
-            border-collapse: collapse;
-            max-width: 100%;
-        }
-
-        td, th {
-            border: 1px solid #ddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #eee;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/main.css">  
+    <link rel="stylesheet" href="./css/font-awesome.min.css">  
 </head>
 <body>
     <header>
         <nav>
             <a href=<?=$URL.'accounts-list.php'?>>Sąskaitų sąrašas</a>
             <a href=<?=$URL.'new-account.php'?>>Nauja sąskaita</a>
-            <a href=<?=$URL.'login.php?logout'?>>Atsijungti</a>
+            <a href=<?=$URL.'login.php?logout'?>>Atsijungti
+                <i class="fa fa-sign-out"></i>
+            </a>
         </nav>       
     </header>
-<h2>Lėšų nuskaitymas</h2>
+    <h2>Lėšų nuskaitymas</h2>
 
 <?php
 if(isset($_SESSION['note'])) {
@@ -115,13 +103,13 @@ if(isset($_SESSION['note'])) {
             <td><?= $name ?></td>
             <td><?= $surname ?></td>
             <!-- <td><?= $id ?></td> -->
-            <td><?= $IBAN ?></td>
+            <td><?= formatIban($IBAN) ?></td>
             <td><?= $balance ?></td>
             <td>EUR</td>
             <td>
                 <form action="" method="post">
                     <input type="number" step="0.01" name="balance">
-                    <button type="submit" name="deduct" value=<?= $IBAN?>>Nuskaityti lėšas</button>
+                    <button type="submit" name="deduct" value=<?= $IBAN?>>Nuskaičiuoti lėšas</button>
                 </form>
             </td>
         </tr> 

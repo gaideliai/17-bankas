@@ -13,10 +13,10 @@ if(isset($_POST['delete'])) {
         if ($account['account'] == $_POST['delete']) {
             if ($account['balance'] == 0) {
                 unset($data[$key]);
-                $_SESSION['note'] = "Sąskaita ". $_POST['delete']. " ištrinta";
+                $_SESSION['note'] = "Sąskaita ". formatIban($_POST['delete']). " ištrinta";
             }
             else {
-                $_SESSION['note'] = '<span style="color:red;font-weight:bold;">Sąskaitos '. $_POST['delete']. ' ištrinti negalima</span>';
+                $_SESSION['note'] = '<span style="color:red;">Sąskaitos '. formatIban($_POST['delete']). ' ištrinti negalima</span>';
             }
             
         }
@@ -38,28 +38,16 @@ if(isset($_POST['delete'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
 </head>
-<style>
-    table {        
-        border-collapse: collapse;
-        max-width: 100%;
-    }
-
-    td, th {
-        border: 1px solid #ddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #eee;
-    }
-</style>
 <body>
     <header>
         <nav>
             <a href=<?=$URL.'new-account.php'?>>Nauja sąskaita</a>
-            <a href=<?=$URL.'login.php?logout'?>>Atsijungti</a>
+            <a href=<?=$URL.'login.php?logout'?>>Atsijungti
+                <i class="fa fa-sign-out"></i>
+            </a>
         </nav>       
     </header>
     <h2>Sąskaitų sąrašas</h2>
@@ -86,12 +74,23 @@ if(isset($_SESSION['note'])) {
             <td><?= $account['name'] ?></td>
             <td><?= $account['surname'] ?></td>
             <td><?= $account['id'] ?></td>
-            <td><?= $account['account'] ?></td>
+            <td class="iban"><?= formatIban($account['account']) ?></td>
             <td>
                 <form action="" method="post">
-                    <button type="submit" name="delete" value="<?= $account['account'] ?>">Ištrinti sąskaitą</button><br>
-                    <a href=<?=$URL.'add.php?account='.$account['account']?>>Pridėti lėšų</a><br>
-                    <a href=<?=$URL.'deduct.php?account='.$account['account']?>>Nuskaičiuoti lėšas</a>
+                    
+                    <button type="submit" name="delete" value="<?= $account['account'] ?>">
+                    <i class="fa fa-trash"></i>
+                    Ištrinti sąskaitą</button><br>
+                    <div class="btn">
+                        <a href=<?=$URL.'add.php?account='.$account['account']?>>
+                        <i class="fa fa-plus-square"></i>
+                        Pridėti lėšų</a><br>
+                    </div>
+                    <div class="btn">
+                        <a href=<?=$URL.'deduct.php?account='.$account['account']?>>
+                        <i class="fa fa-minus-square"></i>
+                        Nuskaičiuoti lėšas</a>
+                    </div>                    
                 </form>
             </td>
         </tr>

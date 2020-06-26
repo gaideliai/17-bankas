@@ -16,3 +16,13 @@ function sort_by_surname ($key) {
 usort($data, sort_by_surname('surname'));
 
 // _d($data);
+
+function formatIban($number) {
+    $number = (string)$number;
+    $string = substr($number, 0, 4);
+    for ($i=4; $i < strlen($number); $i=$i+4) { 
+        $string .= ' ';
+        $string .= substr($number, $i, 4);
+    }
+    return $string;
+}

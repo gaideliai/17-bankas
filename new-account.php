@@ -108,7 +108,7 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] != 1) {
 
 if (isset($_POST['submit'])) {
     if(strlen($_POST['name']) < 3) {
-        $_SESSION['note'] = '<span style="color:red;font-weight:bold;">Įveskite vardą</span>';
+        $_SESSION['note'] = '<span style="color:red;">Įveskite vardą</span>';
         $_SESSION['surname'] = $_POST['surname'];
         $_SESSION['id'] = $_POST['id'];
         header('Location: '.$URL.'new-account.php');
@@ -116,7 +116,7 @@ if (isset($_POST['submit'])) {
     }
 
     elseif(strlen($_POST['surname']) < 3) {
-        $_SESSION['note'] = '<span style="color:red;font-weight:bold;">Įveskite vardą</span>'; 
+        $_SESSION['note'] = '<span style="color:red;">Įveskite vardą ir pavardę</span>'; 
         $_SESSION['name'] = $_POST['name'];
         $_SESSION['id'] = $_POST['id'];       
         header('Location: '.$URL.'new-account.php');
@@ -124,7 +124,7 @@ if (isset($_POST['submit'])) {
     }
         
     elseif(verifyID($_POST['id']) === false) {
-        $_SESSION['note'] = '<span style="color:red;font-weight:bold;">
+        $_SESSION['note'] = '<span style="color:red;">
                             Neteisingai įvestas asmens kodas</span>'; 
         $_SESSION['name'] = $_POST['name'];
         $_SESSION['surname'] = $_POST['surname'];       
@@ -135,7 +135,7 @@ if (isset($_POST['submit'])) {
     foreach ($data as $key => $account) {
         if ($data[$key]['id'] == $_POST['id'] && $data[$key]['name'] != $_POST['name'] 
             && $data[$key]['surname'] != $_POST['surname']) {
-            $_SESSION['note'] = '<span style="color:red;font-weight:bold;">
+            $_SESSION['note'] = '<span style="color:red;">
                                 Neteisingai įvestas asmens kodas!</span>';
             $_SESSION['name'] = $_POST['name'];
             $_SESSION['surname'] = $_POST['surname'];       
@@ -162,48 +162,63 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+
 </head>
 <body>
     <header>
         <nav>
             <a href=<?=$URL.'accounts-list.php'?>>Sąskaitų sąrašas</a>
-            <a href=<?=$URL.'login.php?logout'?>>Atsijungti</a>
+            <a href=<?=$URL.'login.php?logout'?>>Atsijungti
+                <i class="fa fa-sign-out"></i>
+            </a>
         </nav>       
     </header>
-    <h2>Nauja sąskaita</h2>
+    <div class="form">
+        <h2>Pridėti naują sąskaitą</h2>
 
 <?php
 if(isset($_SESSION['note'])) {
-    echo $_SESSION['note'];
+    echo '<br>', $_SESSION['note'];
     unset($_SESSION['note']);    
 }
 
 ?>
-    <br>
-    <form action="" method="post">
-        <input type="text" name="name" value=<?= $_SESSION['name'] ?? '' ?>> Vardas<br>
+        <br><br>
+        <div class="login">
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+        </div>
+        <form action="" method="post">
+            <label for="">Vardas</label><br>
+            <input type="text" name="name" value=<?= $_SESSION['name'] ?? '' ?>><br><br>
 <?php
 if(isset($_SESSION['name'])) {
     unset($_SESSION['name']);
 }
 ?>
-        <input type="text" name="surname" value=<?= $_SESSION['surname'] ?? '' ?>> Pavardė<br>
+            <label for="">Pavardė</label><br>
+            <input type="text" name="surname" value=<?= $_SESSION['surname'] ?? '' ?>><br><br>
 <?php
 if(isset($_SESSION['surname'])) {
     unset($_SESSION['surname']);
 }
 ?>
-        <input type="text" name="account" value="<?= generateAccountNumber($data)?>" readonly> Sąskaitos numeris<br>
-        <input type="text" maxlength="11" name="id" value=<?= $_SESSION['id'] ?? ''?>> Asmens kodas<br><br>
+            <label for="">Sąskaitos numeris</label><br>
+            <input type="text" name="account" value="<?= formatIban(generateAccountNumber($data))?>" readonly><br><br>
+            <label for="">Asmens kodas</label><br>
+            <input type="text" maxlength="11" name="id" value=<?= $_SESSION['id'] ?? ''?>><br><br>
 <?php
 if(isset($_SESSION['id'])) {
     unset($_SESSION['id']);
 }
 ?>        
-        <input type="hidden" name="balance" value="0">
-        
-        <button type="submit" name="submit">Pridėti naują sąskaitą</button>
-        <button type="submit" name="clear">Išvalyti</button><br>
-    </form>
+            <input type="hidden" name="balance" value="0">
+            
+            <button type="submit" name="submit">Pridėti</button>
+            <button type="submit" name="clear">Išvalyti</button><br>
+        </form>
+    </div>
+
 </body>
 </html>

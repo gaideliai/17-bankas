@@ -29,10 +29,10 @@ if (isset($_POST['add'])) {
             if ($_POST['balance'] > 0) {
                 // $data[$key]['balance'] += $_POST['balance'];
                 $data[$key]['balance'] = round(($data[$key]['balance'] + $_POST['balance']), 2);
-                $_SESSION['note'] = 'Lėšos įskaitytos į sąskaitą '.$IBAN;
+                $_SESSION['note'] = 'Lėšos įskaitytos į sąskaitą '.formatIban($IBAN);
             }
             else {
-                $_SESSION['note'] = '<span style="color:red;font-weight:bold;">
+                $_SESSION['note'] = '<span style="color:red;">
                                     Įveskite sumą - teigiamą skaičių</span>';
             }
              
@@ -61,32 +61,20 @@ if (isset($_POST['add'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        table {        
-            border-collapse: collapse;
-            max-width: 100%;
-        }
-
-        td, th {
-            border: 1px solid #ddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #eee;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
 </head>
 <body>
     <header>
         <nav>
             <a href=<?=$URL.'accounts-list.php'?>>Sąskaitų sąrašas</a>
             <a href=<?=$URL.'new-account.php'?>>Nauja sąskaita</a>
-            <a href=<?=$URL.'login.php?logout'?>>Atsijungti</a>
+            <a href=<?=$URL.'login.php?logout'?>>Atsijungti
+                <i class="fa fa-sign-out"></i>
+            </a>
         </nav>       
     </header>
-<h2>Lėšų įskaitymas</h2>
+    <h2>Lėšų įskaitymas</h2>
 
 <?php
 if(isset($_SESSION['note'])) {
@@ -111,7 +99,7 @@ if(isset($_SESSION['note'])) {
             <td><?= $name ?></td>
             <td><?= $surname ?></td>
             <!-- <td><?= $id ?></td> -->
-            <td><?= $IBAN ?></td>
+            <td><?= formatIban($IBAN) ?></td>
             <td><?= $balance ?></td>
             <td>EUR</td>
             <td>
