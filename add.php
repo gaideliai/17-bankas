@@ -27,7 +27,8 @@ if (isset($_POST['add'])) {
     foreach ($data as $key => $account) {
         if ($_POST['add'] == $account['account']) {
             if ($_POST['balance'] > 0) {
-                $data[$key]['balance'] += $_POST['balance'];
+                // $data[$key]['balance'] += $_POST['balance'];
+                $data[$key]['balance'] = round(($data[$key]['balance'] + $_POST['balance']), 2);
                 $_SESSION['note'] = 'Lėšos įskaitytos į sąskaitą '.$IBAN;
             }
             else {

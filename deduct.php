@@ -28,7 +28,8 @@ if (isset($_POST['deduct'])) {
         if ($_POST['deduct'] == $account['account']) {
 
             if ($_POST['balance'] <= $data[$key]['balance'] && $_POST['balance'] > 0) {
-                $data[$key]['balance'] -= $_POST['balance'];
+                $data[$key]['balance'] = round(($data[$key]['balance'] - $_POST['balance']), 2);
+                // $data[$key]['balance'] -= $_POST['balance'];
                 $_SESSION['note'] = 'Lėšos nuskaitytos iš sąskaitos '.$IBAN;
             }
             elseif ($_POST['balance'] < 0) {
@@ -39,7 +40,7 @@ if (isset($_POST['deduct'])) {
                 $_SESSION['note'] = '<span style="color:red;font-weight:bold;">
                                     Sąskaitoje nepakanka lėšų. Operacija neįvykdyta.</span>';
             }
-
+            // round($account['balance'], 2);
             $balance = number_format($account['balance'], 2, ',', ' ');//.' Eur';
 
             $name = $account['name'];
