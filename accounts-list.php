@@ -79,17 +79,17 @@ if(isset($_SESSION['note'])) {
                 <form action="" method="post">
                     
                     <button type="submit" name="delete" value="<?= $account['account'] ?>">
-                    <i class="fa fa-trash"></i>
-                    Ištrinti sąskaitą</button><br>
+                        <i class="fa fa-trash"></i>Ištrinti sąskaitą
+                    </button>
                     <div class="btn">
                         <a href=<?=$URL.'add.php?account='.$account['account']?>>
-                        <i class="fa fa-plus-square"></i>
-                        Pridėti lėšų</a><br>
+                            <i class="fa fa-plus-square"></i>Pridėti lėšų
+                        </a>
                     </div>
                     <div class="btn">
                         <a href=<?=$URL.'deduct.php?account='.$account['account']?>>
-                        <i class="fa fa-minus-square"></i>
-                        Nuskaičiuoti lėšas</a>
+                            <i class="fa fa-minus-square"></i>Nuskaičiuoti lėšas
+                        </a>
                     </div>                    
                 </form>
             </td>

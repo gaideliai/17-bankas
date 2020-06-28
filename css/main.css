@@ -9,23 +9,38 @@ body * {
 header {
     display: inline-block;
     width: 100%;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    box-shadow: 0 2px 4px #3335;
+    background-color: #fff;
 }
 
     header nav {
         display: inline-block;
-        float: right;
+        float: left;
     }
         header nav > a {
             display: inline-block;
             float: left;
-            margin-left: 20px;
+            margin-left: 8px;
+            margin-right: 12px;
             line-height: 50px;
             font-size: 20px;
+            color: rgb(28, 140, 214);;
+            text-decoration: none;
         }
         header nav > a > .fa {
             padding-top: 15px;
-            text-decoration: underline;
+            /* text-decoration: underline; */
         }
+
+/* h2 {
+    margin-top: 90px;
+} */
 
 table {  
     display: inline-block;
@@ -74,7 +89,7 @@ button,
     }
 
 .fa {
-    padding-top: 2px;
+    padding: 2px 6px 2px 0;
 }
 
 .fa.fa-plus-square,
@@ -98,6 +113,7 @@ button,
     background-color: rgb(236, 233, 233);
 }
     .form > h2 {
+        margin-top: 50px;
         margin-bottom: 0;
     }
     .form > .login {
