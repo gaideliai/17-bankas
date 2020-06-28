@@ -141,7 +141,6 @@ if (isset($_POST['submit'])) {
             $_SESSION['surname'] = $_POST['surname'];       
             header('Location: '.$URL.'new-account.php');
             die();
-            break;
         }
     }
 
