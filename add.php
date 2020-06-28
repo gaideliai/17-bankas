@@ -1,8 +1,7 @@
 <?php
 require __DIR__ . '/bootstrap.php';
 
-// _d($_GET);
-// _d($_POST);
+
 
 if (!isset($_SESSION['login']) || $_SESSION['login'] != 1) {
     header('Location: '.$URL.'login.php');
@@ -21,6 +20,9 @@ if (isset($_GET['account'])) {
         }
     }
 }
+
+_d($_GET);
+_d($_POST);
 
 
 if (isset($_POST['add'])) {

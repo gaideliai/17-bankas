@@ -28,17 +28,17 @@ header {
             float: left;
             margin-left: 8px;
             margin-right: 12px;
-            line-height: 50px;
+            line-height: 40px;
             font-size: 20px;
             color: rgb(28, 140, 214);;
             text-decoration: none;
         }
         header nav > a > .fa {
-            padding-top: 15px;
+            padding-top: 10px;
             /* text-decoration: underline; */
         }
 
-h2 {
+body > h2 {
     margin-top: 90px;
 }
 
@@ -116,10 +116,15 @@ button,
         margin-top: 50px;
         margin-bottom: 0;
     }
+    .form > h2.new {
+        margin-top: 70px;
+        margin-bottom: 0;
+    }
     .form > .login {
         display: inline-block;
         width: 120px;
         height: 120px;
+        margin-top: 10px;
         margin-bottom: 20px;
         border-radius: 50%;
         text-align: center;

@@ -176,7 +176,7 @@ if (isset($_POST['submit'])) {
         </nav>       
     </header>
     <div class="form">
-        <h2>Pridėti naują sąskaitą</h2>
+        <h2 class="new">Pridėti naują sąskaitą</h2>
 
 <?php
 if(isset($_SESSION['note'])) {
@@ -185,7 +185,7 @@ if(isset($_SESSION['note'])) {
 }
 
 ?>
-        <br><br>
+        <br>
         <div class="login">
             <i class="fa fa-user-plus" aria-hidden="true"></i>
         </div>
@@ -205,7 +205,7 @@ if(isset($_SESSION['surname'])) {
 }
 ?>
             <label for="">Sąskaitos numeris</label><br>
-            <input type="text" name="account" value="<?= formatIban(generateAccountNumber($data))?>" readonly><br><br>
+            <input type="text" name="account" value="<?= generateAccountNumber($data)?>" readonly><br><br>
             <label for="">Asmens kodas</label><br>
             <input type="text" maxlength="11" name="id" value=<?= $_SESSION['id'] ?? ''?>><br><br>
 <?php
