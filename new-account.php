@@ -148,7 +148,7 @@ if (isset($_POST['submit'])) {
     $data[] = ['name' => $_POST['name'], 'surname' => $_POST['surname'], 'id' => $_POST['id'], 'account' => $_POST['account'], 'balance' => $_POST['balance']]; 
     file_put_contents(__DIR__ .'/accounts.json', json_encode($data));
     $_SESSION['note'] = 'Pridėta nauja kliento sąskaita';
-    header("Location: $URL"."new-account.php");
+    header('Location: '.$URL.'new-account.php');
     die();
 }
 

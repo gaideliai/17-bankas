@@ -1,5 +1,6 @@
 <?php 
 require __DIR__.'/bootstrap.php';
+//'/bootstrap.php';
 
 if (!isset($_SESSION['login']) || $_SESSION['login'] != 1) {
     header('Location: '.$URL.'login.php');
