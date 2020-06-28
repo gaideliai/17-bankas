@@ -1,7 +1,6 @@
 <?php
 require __DIR__ . '/bootstrap.php';
 
-// require './bootstrap.php';
 
 if (!isset($_SESSION['login']) || $_SESSION['login'] != 1) {
     header('Location: '.$URL.'login.php');
@@ -20,9 +19,6 @@ if (isset($_GET['account'])) {
         }
     }
 }
-
-_d($_GET);
-_d($_POST);
 
 
 if (isset($_POST['add'])) {
@@ -62,7 +58,7 @@ if (isset($_POST['add'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bankas</title>
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/font-awesome.min.css">
 </head>
@@ -107,7 +103,7 @@ if(isset($_SESSION['note'])) {
             <td>
                 <form action="" method="post">
                     <input type="number" step="0.01" name="balance">
-                    <button type="submit" name="add" value=<?= $IBAN?>>Pridėti lėšų</button>
+                    <button type="submit" name="add" value=<?= $IBAN ?>>Pridėti lėšų</button>
                 </form>
             </td>
         </tr> 

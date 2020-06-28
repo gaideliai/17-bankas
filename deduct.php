@@ -63,7 +63,7 @@ if (isset($_POST['deduct'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bankas</title>
     <link rel="stylesheet" href="./css/main.css">  
     <link rel="stylesheet" href="./css/font-awesome.min.css">  
 </head>
@@ -77,7 +77,7 @@ if (isset($_POST['deduct'])) {
             </a>
         </nav>       
     </header>
-    <h2>Lėšų nuskaitymas</h2>
+    <h2>Lėšų nurašymas</h2>
 
 <?php
 if(isset($_SESSION['note'])) {
@@ -109,7 +109,7 @@ if(isset($_SESSION['note'])) {
             <td>
                 <form action="" method="post">
                     <input type="number" step="0.01" name="balance">
-                    <button type="submit" name="deduct" value=<?= $IBAN?>>Nuskaičiuoti lėšas</button>
+                    <button type="submit" name="deduct" value=<?= $IBAN ?>>Nuskaičiuoti lėšas</button>
                 </form>
             </td>
         </tr> 

@@ -161,7 +161,7 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bankas</title>
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/font-awesome.min.css">
 
@@ -185,7 +185,7 @@ if(isset($_SESSION['note'])) {
 }
 
 ?>
-        <br>
+        <br><br>
         <div class="login">
             <i class="fa fa-user-plus" aria-hidden="true"></i>
         </div>
