@@ -123,7 +123,7 @@ if (isset($_POST['submit'])) {
         die();
     }
         
-    elseif(verifyID($_POST['id']) === false) {
+    elseif(!verifyID($_POST['id'])) {
         $_SESSION['note'] = '<span style="color:red;">
                             Neteisingai įvestas asmens kodas</span>'; 
         $_SESSION['name'] = $_POST['name'];
